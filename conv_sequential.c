@@ -21,21 +21,19 @@ int main(){
 
     double itime, ftime, exec_time;
     itime = omp_get_wtime();
-    
+
     omp_set_num_threads(4);
-    #pragma omp parallel for
     for (int i = 0; i < size_answer; i++) {
         answer[i] = 0;
         for (int j = 0; j < NF; j++) {
             answer[i] += A[i + j] * F[NF - j - 1];
         }
-        
     }
 
     ftime = omp_get_wtime();
     exec_time = ftime - itime;
     printf("\n\nTime taken is %f\n\n", exec_time);
-    
+
     for (int i = 0; i < size_answer; i++) {
         printf("%d\n", answer[i]);
     }
