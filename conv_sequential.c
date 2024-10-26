@@ -32,7 +32,7 @@ int main(){
 
     ftime = omp_get_wtime();
     exec_time = ftime - itime;
-    printf("\n\nTime taken is %f\n\n", exec_time);
+    //printf("\n\nTime taken is %f\n\n", exec_time);
 
     for (int i = 0; i < size_answer; i++) {
         printf("%d\n", answer[i]);
