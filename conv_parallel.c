@@ -37,7 +37,10 @@ int main(){
     //printf("\n\nTime taken is %f\n\n", exec_time);
     
     for (int i = 0; i < size_answer; i++) {
-        printf("%d\n", answer[i]);
+        printf("%d", answer[i]);
+        if(i!=size_answer-1){
+            printf("\n");
+        }
     }
 
     // ---- free memory ----
