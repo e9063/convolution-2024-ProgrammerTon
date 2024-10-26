@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<omp.h>
+//#include<omp.h>
 
 int main(){
     // ---- input and malloc A, F ----
@@ -19,10 +19,10 @@ int main(){
     int  size_answer = NA - NF + 1;
     int *answer = (int*)malloc(sizeof(int) * size_answer);
 
-    double itime, ftime, exec_time;
-    itime = omp_get_wtime();
+    // double itime, ftime, exec_time;
+    // itime = omp_get_wtime();
 
-    omp_set_num_threads(4);
+    // omp_set_num_threads(4);
     for (int i = 0; i < size_answer; i++) {
         answer[i] = 0;
         for (int j = 0; j < NF; j++) {
@@ -30,8 +30,8 @@ int main(){
         }
     }
 
-    ftime = omp_get_wtime();
-    exec_time = ftime - itime;
+    // ftime = omp_get_wtime();
+    // exec_time = ftime - itime;
     //printf("\n\nTime taken is %f\n\n", exec_time);
 
     for (int i = 0; i < size_answer; i++) {
