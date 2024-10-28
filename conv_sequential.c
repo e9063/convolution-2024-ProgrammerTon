@@ -20,7 +20,6 @@ int main(){
     int  size_answer = NA - NF + 1;
     int *answer = (int*)malloc(sizeof(int) * size_answer);
     clock_t start, end;
-    double cpu_time_used;
 
     // ---- convolution and count time ----
     start = clock();
