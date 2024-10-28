@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <time.h>
 
 int main() {
     // ---- input and malloc A, F ----
@@ -19,10 +20,11 @@ int main() {
     int size_answer = NA - NF + 1;
     int *answer = (int *)malloc(sizeof(int) * size_answer);
 
-    double itime, ftime, exec_time;
-    itime = omp_get_wtime();
-
+    clock_t start, end;
+    double cpu_time_used;
     omp_set_num_threads(4);
+    
+    start = clock();
     #pragma omp parallel for
     for (int i = 0; i < size_answer; i++) {
         answer[i] = 0;
@@ -30,9 +32,11 @@ int main() {
             answer[i] += A[i + j] * F[NF - j - 1];
         }
     }
+    end = clock();
 
-    ftime = omp_get_wtime();
-    exec_time = ftime - itime;
+    FILE *time_file = fopen("output_parallel_time.txt", "w");
+    fprintf(time_file, "Time taken for parallel is %f seconds\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+    fclose(time_file);
 
     for (int i = 0; i < size_answer; i++) {
         printf("%d", answer[i]);
@@ -40,11 +44,6 @@ int main() {
             printf("\n");
         }
     }
-
-    // Write execution time to output_1_time.txt
-    FILE *time_file = fopen("output_1_time.txt", "w");
-    fprintf(time_file, "Time taken is %f seconds\n", exec_time);
-    fclose(time_file);
 
     // ---- free memory ----
     free(F);

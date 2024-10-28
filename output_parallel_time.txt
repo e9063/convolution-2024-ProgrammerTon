@@ -1,0 +1,1 @@
+Time taken for parallel is 0.001000 seconds
