@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 int main(){
@@ -16,12 +16,13 @@ int main(){
     }
     // ---- end input and malloc----
 
+    // ---- set up variable and allocate ----
     int  size_answer = NA - NF + 1;
     int *answer = (int*)malloc(sizeof(int) * size_answer);
-
     clock_t start, end;
     double cpu_time_used;
 
+    // ---- convolution and count time ----
     start = clock();
     for (int i = 0; i < size_answer; i++) {
         answer[i] = 0;
@@ -31,10 +32,12 @@ int main(){
     }
     end = clock();
 
+    // ---- print time taken in output_sequential_time.txt ----
     FILE *time_file = fopen("output_sequential_time.txt", "w");
     fprintf(time_file, "Time taken for sequential is %f seconds\n", ((double) (end - start)) / CLOCKS_PER_SEC);
     fclose(time_file);
 
+    // ---- print output ----
     for (int i = 0; i < size_answer; i++) {
         printf("%d", answer[i]);
         if(i!=size_answer-1){

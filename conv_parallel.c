@@ -17,13 +17,14 @@ int main() {
     }
     // ---- end input and malloc ----
 
+    // ---- choose number of thread, set up variable, and allocate ----
+    omp_set_num_threads(4);
     int size_answer = NA - NF + 1;
     int *answer = (int *)malloc(sizeof(int) * size_answer);
-    omp_set_num_threads(4);
-
     clock_t start, end;
     double cpu_time_used;
     
+    // ---- convolution and count time ----
     start = clock();
     #pragma omp parallel for
     for (int i = 0; i < size_answer; i++) {
@@ -34,10 +35,12 @@ int main() {
     }
     end = clock();
 
+    // ---- print time taken in output_parallel_time.txt ----
     FILE *time_file = fopen("output_parallel_time.txt", "w");
     fprintf(time_file, "Time taken for parallel is %f seconds\n", ((double) (end - start)) / CLOCKS_PER_SEC);
     fclose(time_file);
 
+    // ---- print output ----
     for (int i = 0; i < size_answer; i++) {
         printf("%d", answer[i]);
         if (i != size_answer - 1) {
