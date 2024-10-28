@@ -1,1 +1,1 @@
-Time taken for sequential is 0.002000 seconds
+Time taken for sequential is 14.268000 seconds
