@@ -19,10 +19,10 @@ int main() {
 
     int size_answer = NA - NF + 1;
     int *answer = (int *)malloc(sizeof(int) * size_answer);
+    omp_set_num_threads(4);
 
     clock_t start, end;
     double cpu_time_used;
-    omp_set_num_threads(4);
     
     start = clock();
     #pragma omp parallel for
